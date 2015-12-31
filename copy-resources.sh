@@ -38,6 +38,13 @@ echo "Copying Linux x86_64..."
 cp $BASE_DIR/target/linux/x86_64/cmake.log src/main/resources/nu/pattern/opencv/linux/x86_64
 cp $BASE_DIR/target/linux/x86_64/lib/libopencv_java$SHORT_VERSION.so src/main/resources/nu/pattern/opencv/linux/x86_64
 
+echo "Cleaning up Linux arm..."
+rm src/main/resources/nu/pattern/opencv/linux/arm/cmake.log
+rm src/main/resources/nu/pattern/opencv/linux/arm/*.so
+echo "Copying Linux arm..."
+cp $BASE_DIR/target/linux/arm/cmake.log src/main/resources/nu/pattern/opencv/linux/arm
+cp $BASE_DIR/target/linux/arm/lib/libopencv_java$SHORT_VERSION.so src/main/resources/nu/pattern/opencv/linux/arm
+
 # Windows
 echo "Cleaning up Windows..."
 rm src/main/resources/nu/pattern/opencv/windows/x86_32/*.dll

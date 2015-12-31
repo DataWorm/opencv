@@ -107,6 +107,7 @@ OS X | x86_32
 OS X | x86_64
 Linux | x86_64
 Linux | x86_32
+Linux | arm
 Windows | x86_32
 Windows | x86_64
 
