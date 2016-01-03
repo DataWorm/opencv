@@ -324,7 +324,7 @@ public class OpenCV {
 				location = "/nu/pattern/opencv/linux/x86_64/libopencv_java249.so";
 				break;
 			case ARM:
-				location = "/nu/pattern/opencv/linux/arm/libopencv_java2411.so";
+				location = "/nu/pattern/opencv/linux/arm/libopencv_java249.so";
 				break;
 			default:
 				throw new UnsupportedPlatformException(os, arch);
