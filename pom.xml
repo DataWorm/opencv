@@ -84,4 +84,18 @@
         </repository>
 	</repositories>
 
+	
+	<distributionManagement>
+		<repository>
+			<id>hmotza.releases.public</id>
+			<name>Releases</name>
+			<url>http://maven.hmotza.de/content/repositories/extern/</url>
+		</repository>
+		<snapshotRepository>
+			<id>hmotza.snapshots.public</id>
+			<name>Public Snapshots</name>
+			<url>http://maven.hmotza.de/content/repositories/public-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
