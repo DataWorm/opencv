@@ -335,7 +335,7 @@ public class OpenCV {
 		case OSX:
 			switch (arch) {
 			case X86_64:
-				location = "/nu/pattern/opencv/osx/x86_64/libopencv_java310.dylib";
+				location = "/nu/pattern/opencv/osx/x86_64/libopencv_java310.so";
 				break;
 			default:
 				throw new UnsupportedPlatformException(os, arch);
