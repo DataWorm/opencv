@@ -13,7 +13,7 @@ rm -rf upstream/res/*
 echo "Copying Java..."
 cp $BASE_DIR/target/osx/x86_64/bin/opencv-$SHORT_VERSION.jar upstream
 cp $BASE_DIR/target/osx/x86_64/modules/java/pure_test/.build/build/jar/opencv-test.jar upstream
-cp -r $BASE_DIR/modules/java/common_test/res/* upstream/res
+cp -r $BASE_DIR/target/osx/x86_64/modules/java/pure_test/.build/res/* upstream/res
 
 # OSX
 echo "Cleaning up OSX..."

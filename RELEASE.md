@@ -2,6 +2,78 @@
 
 ## Version Notes
 
+### 3.2.0
+
+#### Linux/Arm for Raspberry Pi
+
+* Install packages:
+```
+sudo apt-get update && sudo apt-get install oracle-java8-jdk cmake ant
+sudo apt-get install build-essential cmake pkg-config libpng12-0 libpng12-dev libpng++-dev libpng3 libpnglite-dev zlib1g-dbg zlib1g zlib1g-dev pngtools  libtiff4 libtiffxx0c2 libtiff-tools libjpeg8 libjpeg8-dev libjpeg8-dbg libjpeg-progs libavcodec-dev   libavformat-dev libgstreamer0.10-0-dbg libgstreamer0.10-0 libgstreamer0.10-dev  libunicap2 libunicap2-dev libdc1394-22-dev libdc1394-22 libdc1394-utils swig libv4l-0 libv4l-dev
+```
+* Change .bashrc to set JAVA_HOME, ANT_HOME and paths:
+
+```
+export ANT_HOME=/usr/share/ant/
+export PATH=${PATH}:${ANT_HOME}/bin
+export JAVA_HOME=/usr/lib/jvm/jdk-8-oracle-arm32-vfp-hflt/
+export PATH=$PATH:$JAVA_HOME/bin
+```
+
+* Download opencv:
+
+```
+wget https://github.com/opencv/opencv/archive/3.2.0.zip
+mv 3.2.0 opencv.zip
+unzip opencv.zip 
+cd opencv-3.2.0/
+```
+
+* Finally build using cmake:
+```
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D WITH_OPENCL=OFF -D BUILD_PERF_TESTS=OFF -D BUILD_SHARED_LIBS=OFF -D JAVA_INCLUDE_PATH=$JAVA_HOME/include -D JAVA_AWT_LIBRARY=$JAVA_HOME/jre/lib/amd64/libawt.so -D JAVA_JVM_LIBRARY=$JAVA_HOME/jre/lib/arm/server/libjvm.so -D CMAKE_INSTALL_PREFIX=/usr/local ..
+make
+make install
+```
+
+* libopencv_java320.so can now be found in build/libs 
+
+
+#### Linux
+* Built on Ubuntu 16.04.1
+* Was having problems with HGFS, solved with: http://askubuntu.com/questions/591664/files-missing-in-mnt-hgfs-on-ubuntu-vm
+* sudo apt install default-jdk ant maven git cmake -y
+* git clone https://github.com/rasa/vmware-tools-patches.git
+* cd vmware-tools-patches
+* ./patched-open-vm-tools.sh
+* Getting seemingly random missing separator errors when making. Seems random because just running make again sometimes goes further. Was able to finally build by using `until make; do echo; done` which is absurd but it worked, so it's not absurd. Could be that this is due to unzipping on OS X, but the line endings should be the same.
+* On 32 bit: `jason@ubuntu:/usr/lib/jvm/default-java/include$ sudo ln -s linux/jni_md.h jni_md.h` Seems that cmake didn't detect the include/linux directory for some reason.
+* OpenCV built in tests would not pass in 32 bit. Failures seemed centered around the calib3d module. Releasing anyway as our library tests were passing, so perhaps this will still be useful to some people.
+
+#### Ubuntu 14.04.5 Attempt
+* Due to https://github.com/openpnp/opencv/issues/10, attempting to rebuild on Ubuntu 14.04.5 for better libstdc++ compatibility.
+* HGFS seems to be just completely broken, so instead of switching back and forth between the VM and the host we're goign to build everything for the Linux parts in the VM and check it into Github and then finish the process in OS X.
+* With a fresh 14.04.5 install:
+```
+sudo apt update -y
+sudo apt full-upgrade -y
+sudo reboot
+sudo apt install default-jdk ant maven git cmake g++ -y
+git clone https://github.com/openpnp/opencv.git
+cd opencv; mkdir opencv; cd opencv
+wget https://github.com/opencv/opencv/archive/3.2.0.zip
+unzip opencv-3.2.0.zip
+cd ..
+./create-targets.sh 3.2.0
+cd opencv/opencv-3.2.0/target/linux/x86_64
+cmake -DBUILD_SHARED_LIBS=OFF ../../.. > cmake.log
+make -j8
+```
+
+
+
 ### 3.0.0
 
 * OS X Tests are currently failing due to https://github.com/Itseez/opencv/issues/5030

@@ -1,4 +1,4 @@
-# OpenCV 2.4.11 (packaged by [OpenPnP](http://openpnp.org))
+# OpenCV 3.2.0 (packaged by [OpenPnP](http://openpnp.org))
 
 [OpenCV](http://opencv.org) Java bindings packaged with native libraries, seamlessly delivered as a turn-key Maven dependency.
 
@@ -48,7 +48,7 @@ OpenPnP's OpenCV package is added to your project as any other dependency.
     <dependency>
       <groupId>org.openpnp</groupId>
       <artifactId>opencv</artifactId>
-      <version>2.4.11-2</version>
+      <version>3.2.0-1</version>
     </dependency>
     
     <!-- ... -->
@@ -120,5 +120,5 @@ This package is maintained by [Jason von Nieda](http://github.com/vonnieda).
 ## Acknowledgements
 
 - [Michael Ahlers](http://github.com/michaelahlers), for originally creating and maintaining this project.
-- [Greg Borenstein](https://github.com/atduskgreg), who's advice and [OpenCV for Processing](https://github.com/atduskgreg/opencv-processing) project informed this package's development. 
+- [Greg Borenstein](https://github.com/atduskgreg), whose advice and [OpenCV for Processing](https://github.com/atduskgreg/opencv-processing) project informed this package's development. 
 - [Alex Osborne](https://github.com/ato), for helpful [utility class producing temporary directories with Java NIO that are properly garbage-collected on shutdown](https://gist.github.com/ato/6774390).
